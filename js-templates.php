@@ -9,7 +9,15 @@
 </script>
 
 <script id="tmpl-content" type="text/html">
-	<li><a href="/post/{{ data.ID }}">{{ data.title }}</a></li>
+	<article class="post">
+
+		<# if ( data.featured_image && data.featured_image.attachment_meta && data.featured_image.attachment_meta.sizes['post-thumbnail'] ) { #>
+			<img src="{{data.featured_image.attachment_meta.sizes['post-thumbnail'].url}}" />
+		<# } #>
+
+		<h1><a href="/post/{{ data.ID }}">{{ data.title }}</a></h1>
+
+	</article>
 </script>
 
 <script id="tmpl-single" type="text/html">
