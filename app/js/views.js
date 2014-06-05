@@ -5,7 +5,7 @@
 	'use strict';
 
 	wp.api.views.PostList = Backbone.View.extend({
-		tagName: 'ul',
+		tagName: 'section',
 		events: {
 			'click a': 'open'
 		},
@@ -47,7 +47,7 @@
 	});
 
 	wp.api.views.Index = Backbone.View.extend({
-		tagName: 'section',
+		tagName: 'div',
 
 		template: wp.template( 'index' ),
 
