@@ -1,0 +1,106 @@
+// ==========================================================================
+// Posts and pages
+// ==========================================================================
+
+.sticky { /*! Not used. */ }
+
+.post, .navigation {
+	background-color: lightcyan;
+
+	$colors: map-values( $color__map );
+	$n: length( $colors );
+	@for $i from 1 through $n {
+		&:nth-of-type( #{$n}n + #{$i} ) {
+			background-color: nth( $colors, $i );
+		}
+	}
+}
+
+.content-area {
+	position: relative;
+
+	$size: 280px;
+	$inc: $size/2;
+	$gutter: 15px;
+
+	.post,
+	.navigation {
+		position: absolute;
+		display: table;
+		width: 100%;
+		height: $size;
+		width: $size;
+		clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50% );
+	}
+
+	.post:nth-of-type( 7n + 1 ) {
+		top: 0;
+		left: calc( 50% - #{$inc} );
+	}
+
+	.post:nth-of-type( 7n + 2 ) {
+		top: $inc + $gutter;
+		left: calc( 50% - #{ $inc*2 + $gutter } );
+	}
+
+	.post:nth-of-type( 7n + 3 ) {
+		top: $inc + $gutter;
+		left: calc( 50% + #{$gutter} );
+	}
+
+	.post:nth-of-type( 7n + 4 ) {
+		top: ( $inc + $gutter ) * 2;
+		left: calc( 50% - #{ $inc * 3 + $gutter * 2 } );
+	}
+
+	.post:nth-of-type( 7n + 5 ) {
+		top: ( $inc + $gutter ) * 2;
+		left: calc( 50% - #{$inc});
+	}
+
+	.post:nth-of-type( 7n + 6 ) {
+		top: ( $inc + $gutter ) * 2;
+		left: calc( 50% + #{ $inc/2 + $gutter * 2 } );
+		height: $size * 1.5;
+		width: $size * 1.5;
+	}
+
+	.post:nth-of-type( 7n + 7 ) {
+		top: ( $inc + $gutter ) * 3;
+		left: calc( 50% - #{ $inc*2 + $gutter } );
+	}
+
+	.navigation {
+		top: $inc * 4 - $gutter * 2; // 520
+		left: calc( 50% - #{$inc * 4/28}); // 25
+		height: $size * .75;
+		width: $size * .75;
+	}
+
+	.entry-title,
+	.entry-image,
+	.next-page {
+		margin: 0;
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	.entry-image {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	a {
+		color: white;
+		@include font-size( 18 );
+		text-transform: uppercase;
+		font-weight: $normal;
+		text-decoration: none;
+	}
+}
+
+.placeholders .post {
+	background-color: $color__placeholder !important;
+}

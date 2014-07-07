@@ -13,6 +13,6 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area"></div><!-- #primary -->
+<!-- JS populates me. -->
 
 <?php get_footer(); ?>

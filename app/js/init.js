@@ -10,14 +10,14 @@
 
 		default: function() {
 			var index = new wp.api.views.Index();
-			$('#primary').html( index.render().el );
+			$('#content').html( index.render().el );
 		},
 
 		single: function( id ) {
 			var single = new wp.api.views.Single({
 				model: new wp.api.models.Post({ ID: id })
 			});
-			$('#primary').html( single.render().el );
+			$('#content').html( single.render().el );
 		}
 	});
 

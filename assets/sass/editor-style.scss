@@ -1,0 +1,101 @@
+/*
+Theme Name: th_s
+Description: Used to style the TinyMCE editor.
+*/
+
+
+/**
+ * Table of Contents:
+ *
+ * 1.0 - HTML
+ * 2.0 - Normalize
+ * 3.0 - Typography
+ * 4.0 - Elements
+ * 5.0 - Links
+ * 6.0 - Alignments
+ * 7.0 - Media
+ * 8.0 - Post Formats
+ * 9.0 - RTL
+ * ----------------------------------------------------------------------------
+ */
+
+// Variables
+@import "variables/variables"; // Other variables
+
+// Functions
+@import "functions/functions";
+
+// Mixins
+@import "mixins/mixins";
+
+
+/*--------------------------------------------------------------
+1.0 - HTML
+--------------------------------------------------------------*/
+html .mceContentBody {
+	// Set the font-size and max-width
+}
+
+/*--------------------------------------------------------------
+2.0 - Normalize
+--------------------------------------------------------------*/
+@import "partials/normalize";
+
+/*--------------------------------------------------------------
+3.0 - Typography
+--------------------------------------------------------------*/
+@import "partials/typography";
+
+/*--------------------------------------------------------------
+4.0 - Elements
+--------------------------------------------------------------*/
+@import "partials/elements";
+
+/*--------------------------------------------------------------
+5.0 - Links
+--------------------------------------------------------------*/
+@import "partials/links";
+
+/*--------------------------------------------------------------
+6.0 - Alignments
+--------------------------------------------------------------*/
+@import "partials/alignments";
+
+/*--------------------------------------------------------------
+7.0 - Media
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+8.0 - Post formats
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+9.0 - RTL
+--------------------------------------------------------------*/
+
+html .mceContentBody.rtl {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+.rtl ol,
+.rtl ul {
+	padding: 0 40px 0 0;
+}
+.rtl .wp-caption,
+.rtl tr th {
+	text-align: right;
+}
+.rtl td {
+	padding: 6px 0 6px 10px;
+	text-align: right;
+}
+.rtl blockquote blockquote {
+	margin-left: 0;
+	margin-right: 24px;
+}
+.rtl.post-format-audio:before,
+.rtl.post-format-status:before,
+.rtl.post-format-status > p:first-child:before {
+	background: none;
+	content: none;
+}

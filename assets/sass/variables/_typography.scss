@@ -1,0 +1,25 @@
+// ==========================================================================
+// Typography variables
+// ==========================================================================
+
+$normal: 400; // Change these values when using custom fonts
+$bold: 700; // For example, bold could change to 400;
+
+$base__font-size: 14;
+$title__font-size: 45;
+$line-height: 1.5;
+
+// ==========================================================================
+// Typefaces
+// ==========================================================================
+
+$monospace: 'courier new', monospace;
+$serif: Georgia, "Times New Roman", Times, serif;
+$sans: Helvetica, Arial, sans-serif;
+$lato: 'Lato', $sans; // 400 400i 700
+$playfair: 'Playfair Display', $serif;
+
+
+// Icons
+$genericons: 'Genericons';
+$dashicons: 'Dashicons';

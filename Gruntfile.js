@@ -10,12 +10,23 @@ module.exports = function(grunt) {
 			dev: {
 				options: {
 					noCache: false,
-					sourcemap: true
+					sourcemap: true,
+					style: 'expanded'
 				},
 				files: {
-					'style.css' : 'assets/sass/style.scss'
+					'assets/style.css' : 'assets/sass/style.scss'
 				}
 			}
+		},
+		autoprefixer: {
+			options: {
+				browsers: ['Android >= 2.1', 'Chrome >= 21', 'Explorer >= 7', 'Firefox >= 17', 'Opera >= 12.1', 'Safari >= 6.0']
+				// browsers: ['last 2 version', 'ie 8', 'ie 9']
+			},
+			dev: {
+				src:  'assets/style.css',
+				dest: 'style.css'
+			},
 		},
 		jshint: {
 			options: grunt.file.readJSON( '.jshintrc' ),
@@ -68,7 +79,7 @@ module.exports = function(grunt) {
 		watch: {
 			dev: {
 				files: [ 'assets/sass/**' ],
-				tasks: [ 'sass:dev' ]
+				tasks: [ 'sass:dev', 'autoprefixer:dev' ]
 			},
 			js: {
 				files: [ 'app/js/*.js' ],
@@ -79,7 +90,7 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask( 'js', [ 'uglify:js', 'concat:js' ] );
-	grunt.registerTask( 'css', [ 'sass:dev' ] );
+	grunt.registerTask( 'css', [ 'sass:dev', 'autoprefixer:dev' ] );
 	grunt.registerTask( 'default', [ 'js', 'css' ] );
 	grunt.registerTask( 'test', [ 'qunit:all' ] );
 

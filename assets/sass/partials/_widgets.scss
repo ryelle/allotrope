@@ -1,0 +1,16 @@
+// ==========================================================================
+// Accessibility
+// ==========================================================================
+
+.widget {
+	margin: 0 0 1.5em;
+
+	select { // Make sure select elements fit in widgets
+		max-width: 100%;
+	}
+}
+
+// Search widget
+.widget_search .search-submit {
+	display: none;
+}

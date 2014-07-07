@@ -1,0 +1,16 @@
+// ==========================================================================
+// Header
+// ==========================================================================
+
+.site-title {
+	@include font-size($title__font-size);
+	font-family: $playfair;
+	font-weight: $normal;
+	text-align: center;
+
+	a {
+		color: $color__primary-text;
+		text-decoration: none;
+		text-transform: capitalize;
+	}
+}

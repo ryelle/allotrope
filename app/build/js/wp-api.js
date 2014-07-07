@@ -516,7 +516,8 @@
 	'use strict';
 
 	wp.api.views.PostList = Backbone.View.extend({
-		tagName: 'ul',
+		tagName: 'section',
+		className: 'post-list',
 		events: {
 			'click a': 'open'
 		},
@@ -538,7 +539,11 @@
 				var template = wp.template( 'content' );
 
 				this.$el.append( template( models[i].attributes ) );
+				this.$el.find('.post').eq(i).fadeIn( 'slow' );
+
 			}
+
+			jQuery('.navigation').fadeIn( 'slow' );
 
 			return this;
 		},
@@ -547,6 +552,8 @@
 			var template = wp.template( 'content' );
 
 			this.$el.append( template( model.attributes ) );
+			// Need to fade in.
+			// this.$el.find('.post').eq(i).fadeIn( 700 );
 
 			return this;
 		},
@@ -558,7 +565,8 @@
 	});
 
 	wp.api.views.Index = Backbone.View.extend({
-		tagName: 'section',
+		tagName: 'div',
+		className: 'content-area',
 
 		template: wp.template( 'index' ),
 
@@ -584,8 +592,10 @@
 
 			this.$el.append( this.subview.render().el );
 
-			var paged = wp.template( 'pagination' );
-			this.$el.append( paged() );
+			var pageNav = wp.template( 'pagination' );
+			this.$el.append( pageNav() );
+
+			this.$el.find('.placeholders').remove();
 
 			return this;
 		}
