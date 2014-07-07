@@ -5,7 +5,10 @@
 	font-size: #{$rem-value}rem;
 }
 
-@mixin point( $top: 0, $left: 0){
-	margin-top: $top;
-	margin-left: calc( 50% - $left );
+@mixin point( $top: 0, $left: 0, $direction: right ) {
+	@if $direction == 'left' {
+		$left: $left * -1;
+	}
+	top: $top;
+	left: calc( 50% + #{$left} );
 }

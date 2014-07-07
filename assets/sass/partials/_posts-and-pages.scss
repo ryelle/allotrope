@@ -20,8 +20,8 @@
 	position: relative;
 
 	$size: 280px;
-	$inc: $size/2;
 	$gutter: 15px;
+	$level: $size/2 + $gutter;
 
 	.post,
 	.navigation {
@@ -34,45 +34,38 @@
 	}
 
 	.post:nth-of-type( 7n + 1 ) {
-		top: 0;
-		left: calc( 50% - #{$inc} );
+		@include point( 0, $size/2, left );
 	}
 
+	// 2nd Level
 	.post:nth-of-type( 7n + 2 ) {
-		top: $inc + $gutter;
-		left: calc( 50% - #{ $inc*2 + $gutter } );
+		@include point( $level, $size + $gutter, left );
 	}
-
 	.post:nth-of-type( 7n + 3 ) {
-		top: $inc + $gutter;
-		left: calc( 50% + #{$gutter} );
+		@include point( $level, $gutter);
 	}
 
+	// 3rd Level
 	.post:nth-of-type( 7n + 4 ) {
-		top: ( $inc + $gutter ) * 2;
-		left: calc( 50% - #{ $inc * 3 + $gutter * 2 } );
+		@include point( $level * 2, $size * 1.5 + $gutter * 2, left);
 	}
-
 	.post:nth-of-type( 7n + 5 ) {
-		top: ( $inc + $gutter ) * 2;
-		left: calc( 50% - #{$inc});
+		@include point( $level * 2, $size/2, left );
 	}
-
 	.post:nth-of-type( 7n + 6 ) {
-		top: ( $inc + $gutter ) * 2;
-		left: calc( 50% + #{ $inc/2 + $gutter * 2 } );
+		@include point( $level * 2, $size/4 + $gutter * 2);
 		height: $size * 1.5;
 		width: $size * 1.5;
 	}
 
+	// 4th Level
 	.post:nth-of-type( 7n + 7 ) {
-		top: ( $inc + $gutter ) * 3;
-		left: calc( 50% - #{ $inc*2 + $gutter } );
+		@include point( $level * 3, $size + $gutter, left );
 	}
 
+	// Special case...
 	.navigation {
-		top: $inc * 4 - $gutter * 2; // 520
-		left: calc( 50% - #{$inc * 4/28}); // 25
+		@include point( $size + $size * .75 + $gutter * 3, $gutter * 4/3, left );
 		height: $size * .75;
 		width: $size * .75;
 	}
