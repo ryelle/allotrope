@@ -552,8 +552,6 @@
 			var template = wp.template( 'content' );
 
 			this.$el.append( template( model.attributes ) );
-			// Need to fade in.
-			// this.$el.find('.post').eq(i).fadeIn( 700 );
 
 			return this;
 		},
