@@ -17,59 +17,6 @@
 }
 
 .content-area {
-	position: relative;
-
-	$size: 280px;
-	$gutter: 15px;
-	$level: $size/2 + $gutter;
-
-	.post,
-	.navigation {
-		position: absolute;
-		display: table;
-		width: 100%;
-		height: $size;
-		width: $size;
-		clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50% );
-	}
-
-	.post:nth-of-type( 7n + 1 ) {
-		@include point( 0, $size/2, left );
-	}
-
-	// 2nd Level
-	.post:nth-of-type( 7n + 2 ) {
-		@include point( $level, $size + $gutter, left );
-	}
-	.post:nth-of-type( 7n + 3 ) {
-		@include point( $level, $gutter);
-	}
-
-	// 3rd Level
-	.post:nth-of-type( 7n + 4 ) {
-		@include point( $level * 2, $size * 1.5 + $gutter * 2, left);
-	}
-	.post:nth-of-type( 7n + 5 ) {
-		@include point( $level * 2, $size/2, left );
-	}
-	.post:nth-of-type( 7n + 6 ) {
-		@include point( $level * 2, $size/4 + $gutter * 2);
-		height: $size * 1.5;
-		width: $size * 1.5;
-	}
-
-	// 4th Level
-	.post:nth-of-type( 7n + 7 ) {
-		@include point( $level * 3, $size + $gutter, left );
-	}
-
-	// Special case...
-	.navigation {
-		@include point( $size + $size * .75 + $gutter * 3, $gutter * 4/3, left );
-		height: $size * .75;
-		width: $size * .75;
-	}
-
 	.entry-title,
 	.entry-image,
 	.next-page {
@@ -94,6 +41,4 @@
 	}
 }
 
-.placeholders .post {
-	background-color: $color__placeholder !important;
-}
+

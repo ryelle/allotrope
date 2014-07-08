@@ -13,6 +13,12 @@
 <script id="tmpl-navigation" type="text/html">
 </script>
 
+<script id="tmpl-background" type="text/html">
+	<svg class="decoration {{data.class}}" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 250 250" width="{{ data.size }}" height="{{data.size}}">
+		<polygon points="2,123 123,248 248,123 123,2" />
+	</svg>
+</script>
+
 <script id="tmpl-pagination" type="text/html">
 	<div class="navigation" style="display:none;">
 		<a href="#" class="next-page">Load More</a>

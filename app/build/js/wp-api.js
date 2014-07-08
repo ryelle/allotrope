@@ -585,6 +585,11 @@
 		render: function() {
 			this.$el.html( this.template() );
 
+			this.$el.append( wp.template( 'background' )({ size:250, class: 'small' }) );
+			this.$el.append( wp.template( 'background' )({ size:350, class: 'medium' }) );
+			this.$el.append( wp.template( 'background' )({ size:600, class: 'large' }) );
+			this.$el.append( wp.template( 'background' )({ size:950, class: 'very-large' }) );
+
 			this.subview = new wp.api.views.PostList({
 				collection: new wp.api.collections.Posts()
 			});

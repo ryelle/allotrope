@@ -748,26 +748,6 @@ a:active {
 /*--------------------------------------------------------------
 10.3 - Posts and pages
 --------------------------------------------------------------*/
-.sticky {
-  /*! Not used. */
-}
-
-.post, .navigation {
-  background-color: lightcyan;
-}
-.post:nth-of-type(4n + 1), .navigation:nth-of-type(4n + 1) {
-  background-color: #f576ba;
-}
-.post:nth-of-type(4n + 2), .navigation:nth-of-type(4n + 2) {
-  background-color: #53e8cd;
-}
-.post:nth-of-type(4n + 3), .navigation:nth-of-type(4n + 3) {
-  background-color: #2cc3fb;
-}
-.post:nth-of-type(4n + 4), .navigation:nth-of-type(4n + 4) {
-  background-color: #f6ce1c;
-}
-
 .content-area {
   position: relative;
 }
@@ -775,7 +755,6 @@ a:active {
 .content-area .navigation {
   position: absolute;
   display: table;
-  width: 100%;
   height: 280px;
   width: 280px;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
@@ -816,6 +795,57 @@ a:active {
   height: 210px;
   width: 210px;
 }
+.content-area .placeholders .post {
+  background-color: #ececec !important;
+}
+.content-area .decoration {
+  position: absolute;
+}
+.content-area .decoration.small {
+  top: 560px;
+  left: calc(50% + -295px );
+}
+.content-area .decoration.medium {
+  top: 30px;
+  left: calc(50% + -295px );
+}
+.content-area .decoration.medium polygon {
+  stroke-width: 4px;
+}
+.content-area .decoration.large {
+  top: 280px;
+  left: calc(50% + -560px );
+}
+.content-area .decoration.very-large {
+  top: 0;
+  left: calc(50% + -295px );
+}
+.content-area .decoration polygon {
+  stroke: #ececec;
+  stroke-width: 2px;
+  fill: transparent;
+}
+
+.sticky {
+  /*! Not used. */
+}
+
+.post, .navigation {
+  background-color: lightcyan;
+}
+.post:nth-of-type(4n + 1), .navigation:nth-of-type(4n + 1) {
+  background-color: #f576ba;
+}
+.post:nth-of-type(4n + 2), .navigation:nth-of-type(4n + 2) {
+  background-color: #53e8cd;
+}
+.post:nth-of-type(4n + 3), .navigation:nth-of-type(4n + 3) {
+  background-color: #2cc3fb;
+}
+.post:nth-of-type(4n + 4), .navigation:nth-of-type(4n + 4) {
+  background-color: #f6ce1c;
+}
+
 .content-area .entry-title,
 .content-area .entry-image,
 .content-area .next-page {
@@ -836,10 +866,6 @@ a:active {
   text-transform: uppercase;
   font-weight: 400;
   text-decoration: none;
-}
-
-.placeholders .post {
-  background-color: #ececec !important;
 }
 
 /*--------------------------------------------------------------
