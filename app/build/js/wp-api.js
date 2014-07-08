@@ -552,6 +552,7 @@
 			var template = wp.template( 'content' );
 
 			this.$el.append( template( model.attributes ) );
+			this.$el.find('.post').fadeIn( 'slow' );
 
 			return this;
 		},
