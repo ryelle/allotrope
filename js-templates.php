@@ -42,6 +42,10 @@
 </script>
 
 <script id="tmpl-single" type="text/html">
+	<div class="close">x</div>
+	<# if ( data.featured_image && data.featured_image.source ) { #>
+		<img src="{{data.featured_image.source}}" />
+	<# } #>
 	<h1 class="entry-title">{{ data.title }}</h1>
 	<div class="post">{{{ data.content }}}</div>
 </script>

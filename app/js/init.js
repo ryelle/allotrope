@@ -17,7 +17,12 @@
 			var single = new wp.api.views.Single({
 				model: new wp.api.models.Post({ ID: id })
 			});
-			$('#content').html( single.render().el );
+			if ( ! $('#content .single-post').length ){
+				$('#content').prepend( '<div class="single-post"></div>' );
+			}
+			$('#content .single-post').hide();
+			$('#content .single-post').html( single.render().el );
+			$( window ).scrollTop(0);
 		}
 	});
 

@@ -71,5 +71,12 @@
 			fill: transparent;
 		}
 	}
+}
 
+.single-post {
+	position: absolute;
+	z-index: 10; // Above diamonds
+	top: 220px;
+	left: $spacing * 3;
+	right: $spacing * 3;
 }

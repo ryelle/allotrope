@@ -4,6 +4,24 @@
 (function( wp, WP_API_Settings, Backbone, $, window, undefined ) {
 	'use strict';
 
+	var positionNav = function( nav, page ) {
+		if ( ! page ){
+			page = nav.data( 'page' );
+		}
+
+		var size = 280 / 2 + 15,
+			pageOffset = (page - 1) * size * 4;
+
+		nav.css({
+			top: pageOffset + 'px',
+			left: 'calc( 50% - 105px )' // Eh
+		});
+
+		nav.data( 'page', page + 1 );
+
+		return nav;
+	};
+
 	wp.api.views.PostList = Backbone.View.extend({
 		tagName: 'section',
 		className: 'post-list',
@@ -17,7 +35,16 @@
 			// this.listenTo( this.collection, 'change', this.render );
 			this.listenTo( this.collection, 'add', this.renderOne );
 
-			this.collection.fetch({ reset: true });
+			this.collection.fetch({ reset: true, success: this.animate });
+		},
+
+		open: function( e ) {
+			e.preventDefault();
+			wp.api.app.navigate( e.target.getAttribute('href'), { trigger: true });
+
+			// Set the post background based on the clicked diamond.
+			var color = $( e.target ).closest( 'article' ).css( 'background-color' );
+			$(".single-post").css( 'background-color', color );
 		},
 
 		render: function() {
@@ -48,6 +75,13 @@
 			this.$el.find('.post').fadeIn( 'slow' );
 
 			return this;
+		},
+
+		// Don't do anything right now?
+		animate: function(){
+			// debugger;
+			positionNav( $('.navigation') );
+			return;
 		},
 
 		position: function( diamond, count ) {
@@ -102,11 +136,6 @@
 			}
 
 			return diamond;
-		},
-
-		open: function( e ) {
-			e.preventDefault();
-			wp.api.app.navigate( e.target.getAttribute('href'), { trigger: true });
 		}
 	});
 
@@ -126,8 +155,7 @@
 		nextPage: function( e ){
 			e.preventDefault();
 			this.page++;
-			this.subview.collection.fetch({ data: { page: this.page } });
-			this.positionNav( this.$el.find('.navigation') );
+			this.subview.collection.fetch({ data: { page: this.page }, success: this.subview.animate });
 		},
 
 		render: function() {
@@ -145,25 +173,13 @@
 			this.$el.append( this.subview.render().el );
 
 			var pageNav = wp.template( 'pagination' ),
-				nav = this.positionNav( $( pageNav() ) );
+				nav = positionNav( $( pageNav() ), this.page );
 
 			this.$el.append( nav );
 
 			this.$el.find('.placeholders').remove();
 
 			return this;
-		},
-
-		positionNav: function( nav ) {
-			var size = 280 / 2 + 15,
-				pageOffset = this.page * size * 4;
-
-			nav.css({
-				top: pageOffset + 'px',
-				left: 'calc( 50% - 105px )' // Eh
-			});
-
-			return nav;
 		}
 
 	});
@@ -173,17 +189,42 @@
 
 		template: wp.template( 'single' ),
 
+		events: {
+			'click .close': 'close',
+			'click .next' : 'next',
+			'click .prev' : 'prev'
+		},
+
+		close: function( e ) {
+			e.preventDefault();
+			wp.api.app.navigate( '/', { trigger: true });
+		},
+
+		next: function( e ) {
+			e.preventDefault();
+			//wp.api.app.navigate( '/', { trigger: true });
+		},
+
+		prev: function( e ) {
+			e.preventDefault();
+			//wp.api.app.navigate( '/', { trigger: true });
+		},
+
 		// constructor that adds a change event to model and then does a fetch
 		initialize: function() {
 			this.listenTo( this.model, 'change', this.render );
 
-			this.model.fetch({ reset: true });
+			this.model.fetch({ reset: true, success: this.animate });
 		},
 
 		render: function() {
 			this.$el.html( this.template( this.model.attributes ) );
 
 			return this;
+		},
+
+		animate: function(){
+			$('#content .single-post').slideDown();
 		}
 	});
 
