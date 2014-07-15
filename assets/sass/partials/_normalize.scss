@@ -18,6 +18,13 @@ body {
 	margin: 0;
 }
 
+// Force all elements to wrap, rather than break out of container
+* {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+
+
 // ==========================================================================
 // HTML5 display definitions
 // ==========================================================================

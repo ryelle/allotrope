@@ -59,6 +59,11 @@ body {
   margin: 0;
 }
 
+* {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+
 article,
 aside,
 details,
@@ -777,6 +782,10 @@ a:active {
   width: 280px;
   -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
           clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
+}
+.content-area .entry-title {
+  max-width: 280px;
+  max-height: 280px;
 }
 .content-area .post:nth-of-type(7n + 6) {
   height: 420px;
