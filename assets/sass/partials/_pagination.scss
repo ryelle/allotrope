@@ -1,0 +1,35 @@
+// ==========================================================================
+// Post, Page, and Comment pagination
+// ==========================================================================
+
+.site-main {
+	.comment-navigation,
+	.paging-navigation,
+	.post-navigation {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+}
+
+.comment-navigation,
+.paging-navigation,
+.post-navigation {
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
+
+// ==========================================================================
+// Pages within posts
+// ==========================================================================
+
+.page-links {
+	clear: both;
+	margin: 0 0 1.5em;
+}

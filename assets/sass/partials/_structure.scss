@@ -28,7 +28,6 @@
 		width: $size * 1.5;
 	}
 
-	// Special case...
 	.navigation {
 		height: $size * .75;
 		width: $size * .75;
@@ -39,7 +38,8 @@
 	}
 
 	.decoration {
-		position: absolute;
+		position: fixed;
+		z-index: -1;
 
 		&.small {
 			@include point( $size*2, $size + $gutter, left );
@@ -48,16 +48,16 @@
 			}
 		}
 		&.medium {
-			@include point( $gutter*2, $size + $gutter, left );
+			@include point( $gutter*2 + 100, $size + $gutter, left );
 			polygon {
 				stroke-width: 4px;
 			}
 		}
 		&.large {
-			@include point( $size, $size*2, left );
+			@include point( $size + 80, $size*2, left );
 		}
 		&.very-large {
-			@include point( 0, $size + $gutter, left );
+			@include point( -50px, $size + $gutter, left );
 		}
 
 		polygon {

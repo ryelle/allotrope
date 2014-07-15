@@ -3,58 +3,45 @@
 // ==========================================================================
 
 .main-navigation {
-	clear: both;
+	@include clearfix;
 	display: block;
-	float: left;
 	width: 100%;
+	margin: 0 0 $spacing*2;
+
+	text-transform: uppercase;
+	text-align: center;
 
 	ul {
 		list-style: none;
 		margin: 0;
 		padding-left: 0;
-
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			display: none;
-			float: left;
-			left: 0;
-			position: absolute;
-			top: 1.5em;
-			z-index: 99999;
-
-			ul {
-				left: 100%;
-				top: 0;
-			}
-			a {
-				width: 200px;
-
-				&:hover {}
-			}
-			li {}
-			:hover {// Wat?
-				 > a {}
-			}
-		}
 	}
+
 	li {
-		float: left;
+		display: inline-block;
 		position: relative;
+		padding: 0 $spacing;
 
 		&:hover {
-			> ul {
-				display: block;
-			}
 			> a {}
 		}
 	}
+
 	a {
 		display: block;
+		color: $color__nav;
 		text-decoration: none;
+
+		&:hover, &:active, &:focus {
+			color: $color__nav--hover;
+		}
 	}
+
 	.current_page_item,
 	.current-menu-item {
-		a {}
+		a {
+			color: $color__nav--hover;
+		}
 	}
 }
 
@@ -63,6 +50,7 @@
 	cursor: pointer;
 	display: none;
 }
+
 @media screen and (max-width: 600px) {
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
@@ -71,26 +59,5 @@
 
 	.main-navigation ul {
 		display: none;
-	}
-}
-.site-main {
-	.comment-navigation,
-	.paging-navigation,
-	.post-navigation {
-		margin: 0 0 1.5em;
-		overflow: hidden;
-	}
-}
-.comment-navigation,
-.paging-navigation,
-.post-navigation {
-	.nav-previous {
-		float: left;
-		width: 50%;
-	}
-	.nav-next {
-		float: right;
-		text-align: right;
-		width: 50%;
 	}
 }

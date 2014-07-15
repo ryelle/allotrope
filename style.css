@@ -567,43 +567,40 @@ a:active {
 5.2 - Menus
 --------------------------------------------------------------*/
 .main-navigation {
-  clear: both;
   display: block;
-  float: left;
   width: 100%;
+  margin: 0 0 80px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.main-navigation:before, .main-navigation:after {
+  content: "";
+  display: table;
+}
+.main-navigation:after {
+  clear: both;
 }
 .main-navigation ul {
   list-style: none;
   margin: 0;
   padding-left: 0;
 }
-.main-navigation ul ul {
-  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  display: none;
-  float: left;
-  left: 0;
-  position: absolute;
-  top: 1.5em;
-  z-index: 99999;
-}
-.main-navigation ul ul ul {
-  left: 100%;
-  top: 0;
-}
-.main-navigation ul ul a {
-  width: 200px;
-}
 .main-navigation li {
-  float: left;
+  display: inline-block;
   position: relative;
-}
-.main-navigation li:hover > ul {
-  display: block;
+  padding: 0 40px;
 }
 .main-navigation a {
   display: block;
+  color: #999999;
   text-decoration: none;
+}
+.main-navigation a:hover, .main-navigation a:active, .main-navigation a:focus {
+  color: gray;
+}
+.main-navigation .current_page_item a,
+.main-navigation .current-menu-item a {
+  color: gray;
 }
 
 .menu-toggle {
@@ -621,6 +618,9 @@ a:active {
     display: none;
   }
 }
+/*--------------------------------------------------------------
+5.3 - Pagination
+--------------------------------------------------------------*/
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
@@ -642,9 +642,6 @@ a:active {
   width: 50%;
 }
 
-/*--------------------------------------------------------------
-5.2 - Pagination
---------------------------------------------------------------*/
 .page-links {
   clear: both;
   margin: 0 0 1.5em;
@@ -793,7 +790,8 @@ a:active {
   background-color: #ececec !important;
 }
 .content-area .decoration {
-  position: absolute;
+  position: fixed;
+  z-index: -1;
 }
 .content-area .decoration.small {
   top: 560px;
@@ -804,7 +802,7 @@ a:active {
   stroke-width: 4px;
 }
 .content-area .decoration.medium {
-  top: 30px;
+  top: 130px;
   left: -webkit-calc(50% + -295px );
   left: calc(50% + -295px );
 }
@@ -812,12 +810,12 @@ a:active {
   stroke-width: 4px;
 }
 .content-area .decoration.large {
-  top: 280px;
+  top: 360px;
   left: -webkit-calc(50% + -560px );
   left: calc(50% + -560px );
 }
 .content-area .decoration.very-large {
-  top: 0;
+  top: -50px;
   left: -webkit-calc(50% + -295px );
   left: calc(50% + -295px );
 }

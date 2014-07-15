@@ -9,16 +9,3 @@
 @function rem($value, $context: $base__font-size) {
 	@return ($value / $context * 1rem);
 }
-
-@function level( $i ){
-	$level: 1;
-
-	@if ( $i == 1 ) {
-		$level: 1;
-	} @else if ( $i < 4 ) {
-		$level: 2
-	} @else if ( $i < 7 ) {
-		$level: 3;
-	}
-	@return $level;
-}
