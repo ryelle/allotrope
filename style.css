@@ -596,11 +596,11 @@ a:active {
   text-decoration: none;
 }
 .main-navigation a:hover, .main-navigation a:active, .main-navigation a:focus {
-  color: gray;
+  color: #54eacf;
 }
 .main-navigation .current_page_item a,
 .main-navigation .current-menu-item a {
-  color: gray;
+  color: #54eacf;
 }
 
 .menu-toggle {
