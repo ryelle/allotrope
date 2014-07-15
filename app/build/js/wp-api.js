@@ -512,7 +512,7 @@
 /* global WP_API_Settings:false */
 // Suppress warning about parse function's unused "options" argument:
 /* jshint unused:false */
-(function( wp, WP_API_Settings, Backbone, window, undefined ) {
+(function( wp, WP_API_Settings, Backbone, $, window, undefined ) {
 	'use strict';
 
 	wp.api.views.PostList = Backbone.View.extend({
@@ -536,9 +536,11 @@
 
 			// render each location model using a template
 			for ( var i = 0; i < models.length; i++ ) {
-				var template = wp.template( 'content' );
+				var diamond, template = wp.template( 'content' );
 
-				this.$el.append( template( models[i].attributes ) );
+				diamond = this.position( $( template( models[i].attributes ) ), this.$el.find('.post').length );
+				this.$el.append( diamond );
+
 				this.$el.find('.post').eq(i).fadeIn( 'slow' );
 
 			}
@@ -549,12 +551,68 @@
 		},
 
 		renderOne: function( model ) {
-			var template = wp.template( 'content' );
+			var diamond, template = wp.template( 'content' );
 
-			this.$el.append( template( model.attributes ) );
+			diamond = this.position( $( template( model.attributes ) ), this.$el.find('.post').length );
+			this.$el.append( diamond );
+
 			this.$el.find('.post').fadeIn( 'slow' );
 
 			return this;
+		},
+
+		position: function( diamond, count ) {
+			var level = count % 7, // [0-6]
+				size = 280 / 2 + 15,
+				pageOffset = Math.floor( count / 7 ) * size * 4;
+
+			switch (level) {
+				case 0:
+					diamond.css({
+						top: pageOffset + 'px',
+						left: 'calc( 50% - ' + size * 0.5 + 'px )'
+					});
+					break;
+				case 1:
+					diamond.css({
+						top: size + pageOffset + 'px',
+						left: 'calc( 50% - ' + size * 1.5 + 'px )'
+					});
+					break;
+				case 2:
+					diamond.css({
+						top: size + pageOffset + 'px',
+						left: 'calc( 50% + ' + size * 0.5 + 'px )'
+					});
+					break;
+				case 3:
+					diamond.css({
+						top: 2*size + pageOffset + 'px',
+						left: 'calc( 50% - ' + size * 2.5 + 'px )'
+					});
+					break;
+				case 4:
+					diamond.css({
+						top: 2*size + pageOffset + 'px',
+						left: 'calc( 50% - ' + size * 0.5 + 'px )'
+					});
+					break;
+				case 5:
+					// Not right!
+					diamond.css({
+						top: 2*size + pageOffset + 'px',
+						left: 'calc( 50% + 162.5px )' // 140 + gutter * 1.5
+					});
+					break;
+				case 6:
+					diamond.css({
+						top: 3*size + pageOffset + 'px',
+						left: 'calc( 50% - ' + size * 1.5 + 'px )'
+					});
+					break;
+			}
+
+			return diamond;
 		},
 
 		open: function( e ) {
@@ -580,6 +638,7 @@
 			e.preventDefault();
 			this.page++;
 			this.subview.collection.fetch({ data: { page: this.page } });
+			this.positionNav( this.$el.find('.navigation') );
 		},
 
 		render: function() {
@@ -596,13 +655,28 @@
 
 			this.$el.append( this.subview.render().el );
 
-			var pageNav = wp.template( 'pagination' );
-			this.$el.append( pageNav() );
+			var pageNav = wp.template( 'pagination' ),
+				nav = this.positionNav( $( pageNav() ) );
+
+			this.$el.append( nav );
 
 			this.$el.find('.placeholders').remove();
 
 			return this;
+		},
+
+		positionNav: function( nav ) {
+			var size = 280 / 2 + 15,
+				pageOffset = this.page * size * 4;
+
+			nav.css({
+				top: pageOffset + 'px',
+				left: 'calc( 50% - 105px )' // Eh
+			});
+
+			return nav;
 		}
+
 	});
 
 	wp.api.views.Single = Backbone.View.extend({
@@ -624,4 +698,4 @@
 		}
 	});
 
-})( wp, WP_API_Settings, Backbone, window );
+})( wp, WP_API_Settings, Backbone, jQuery, window );

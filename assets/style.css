@@ -748,6 +748,11 @@ a:active {
 /*--------------------------------------------------------------
 10.3 - Posts and pages
 --------------------------------------------------------------*/
+.post-list {
+  position: relative;
+  left: -62.5px;
+}
+
 .content-area {
   position: relative;
 }
@@ -759,39 +764,11 @@ a:active {
   width: 280px;
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
 }
-.content-area .post:nth-of-type(7n + 1) {
-  top: 0;
-  left: calc(50% + -140px );
-}
-.content-area .post:nth-of-type(7n + 2) {
-  top: 155px;
-  left: calc(50% + -295px );
-}
-.content-area .post:nth-of-type(7n + 3) {
-  top: 155px;
-  left: calc(50% + 15px );
-}
-.content-area .post:nth-of-type(7n + 4) {
-  top: 310px;
-  left: calc(50% + -450px );
-}
-.content-area .post:nth-of-type(7n + 5) {
-  top: 310px;
-  left: calc(50% + -140px );
-}
 .content-area .post:nth-of-type(7n + 6) {
-  top: 310px;
-  left: calc(50% + 100px );
   height: 420px;
   width: 420px;
 }
-.content-area .post:nth-of-type(7n + 7) {
-  top: 465px;
-  left: calc(50% + -295px );
-}
 .content-area .navigation {
-  top: 535px;
-  left: calc(50% + -20px );
   height: 210px;
   width: 210px;
 }
@@ -804,6 +781,9 @@ a:active {
 .content-area .decoration.small {
   top: 560px;
   left: calc(50% + -295px );
+}
+.content-area .decoration.small polygon {
+  stroke-width: 4px;
 }
 .content-area .decoration.medium {
   top: 30px;
