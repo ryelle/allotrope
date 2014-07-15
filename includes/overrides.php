@@ -1,10 +1,9 @@
 <?php
+
 /**
- * Force posts per page for the visuals
+ * Hide any posts with password
  */
-function allotrope_posts_per_page( $query ) {
-	if ( $query->is_main_query() ) {
-		$query->set( 'pre_get_posts', 7 );
-	}
+function allotrope_hide_password( $query ){
+	$query->set( 'has_password', false );
 }
-add_action( 'pre_get_posts', 'allotrope_posts_per_page' );
+add_action( 'pre_get_posts', 'allotrope_hide_password' );
