@@ -707,8 +707,9 @@
 
 		close: function( e ) {
 			e.preventDefault();
-			if ( true ) {
+			if ( $('#content .content-area').length > 0 ) {
 				$('#content .single-post').html('').hide();
+				wp.api.app.navigate( '/' );
 			} else {
 				wp.api.app.navigate( '/', { trigger: true });
 			}
