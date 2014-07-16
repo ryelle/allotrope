@@ -43,5 +43,26 @@
 
 .single-post {
 	padding: $spacing;
-	background: map-get( $color__map, yellow );
+	box-shadow: 0 0 20px rgba( black, 0.15 );
+	color: white;
+	@include font-size( 16 );
+	background: map-get( $color__map, blue );
+
+	.genericon-close-alt {
+		font-size: 32px;
+		color: white;
+
+		&:hover, &:active, &:focus {
+			color: white;
+		}
+	}
+
+	a {
+		color: white;
+
+		&:hover, &:active, &:focus {
+			color: fade-out( white, 0.2 );
+		}
+	}
 }
+

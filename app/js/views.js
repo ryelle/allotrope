@@ -79,7 +79,6 @@
 
 		// Don't do anything right now?
 		animate: function(){
-			// debugger;
 			positionNav( $('.navigation') );
 			return;
 		},
@@ -197,7 +196,11 @@
 
 		close: function( e ) {
 			e.preventDefault();
-			wp.api.app.navigate( '/', { trigger: true });
+			if ( true ) {
+				$('#content .single-post').html('').hide();
+			} else {
+				wp.api.app.navigate( '/', { trigger: true });
+			}
 		},
 
 		next: function( e ) {
@@ -224,6 +227,18 @@
 		},
 
 		animate: function(){
+			var offset = 0,
+				maxHeight = $( window ).height(),
+				height = $('#content .single-post').height();
+
+			if ( height < maxHeight ) {
+				offset = ( ( maxHeight - height ) / 2 ) - 40;
+			} else {
+				offset = $( window ).scrollTop() + 10;
+				$('#content .single-post').css({ position: 'absolute' });
+			}
+
+			$('#content .single-post').css({ top: offset + 'px' });
 			$('#content .single-post').slideDown();
 		}
 	});

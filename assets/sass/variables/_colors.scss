@@ -11,8 +11,8 @@ $color__link--hover: midnightblue;
 $color__nav: #999999;
 $color__nav--hover: #54eacf;
 
-$color__pre-background: #eee;
-$color__mark-background: #fff9c0;
+$color__pre-background: fade-out( white, 0.75 );
+$color__mark-background: fade-out( #f6ce1c, 0.75 );;
 
 $color__hr: #ccc;
 

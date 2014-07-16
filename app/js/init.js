@@ -22,7 +22,7 @@
 			}
 			$('#content .single-post').hide();
 			$('#content .single-post').html( single.render().el );
-			$( window ).scrollTop(0);
+			$('#content .single-post').css({ top: ( $( window ).scrollTop() + 10 ) + 'px' });
 		}
 	});
 
