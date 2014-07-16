@@ -233,9 +233,9 @@
 
 			if ( height < maxHeight ) {
 				offset = ( ( maxHeight - height ) / 2 ) - 40;
+				$('#content .single-post').css({ position: 'fixed' });
 			} else {
 				offset = $( window ).scrollTop() + 10;
-				$('#content .single-post').css({ position: 'absolute' });
 			}
 
 			$('#content .single-post').css({ top: offset + 'px' });
