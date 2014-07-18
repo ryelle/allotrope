@@ -4,8 +4,9 @@
 	var App = Backbone.Router.extend({
 
 		routes: {
-			'':             'default',
-			'post/:id':     'single'
+			'':                   'default',
+			'post/:id':           'single',
+			'post/:id/*slug':     'single'
 		},
 
 		default: function() {
