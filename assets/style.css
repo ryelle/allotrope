@@ -1420,7 +1420,7 @@ a:active {
 }
 .content-area .entry-title,
 .content-area .entry-image,
-.content-area .next-page {
+.content-area .load-more {
   margin: 0;
   display: table-cell;
   text-align: center;

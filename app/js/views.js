@@ -148,10 +148,10 @@
 		page: 1,
 
 		events: {
-			'click .next-page': 'nextPage'
+			'click .load-more': 'loadMore'
 		},
 
-		nextPage: function( e ){
+		loadMore: function( e ){
 			e.preventDefault();
 			this.page++;
 			this.subview.collection.fetch({ data: { page: this.page }, success: this.subview.animate });
@@ -237,6 +237,7 @@
 				$('#content .single-post').css({ position: 'fixed' });
 			} else {
 				offset = $( window ).scrollTop() + 10;
+				$('#content .single-post').css({ position: 'absolute' });
 			}
 
 			$('#content .single-post').css({ top: offset + 'px' });

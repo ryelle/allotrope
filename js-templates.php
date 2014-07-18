@@ -21,7 +21,7 @@
 
 <script id="tmpl-pagination" type="text/html">
 	<div class="navigation" style="display:none;">
-		<a href="#" class="next-page">Load More</a>
+		<a href="#" class="load-more">Load More</a>
 	</div>
 </script>
 
