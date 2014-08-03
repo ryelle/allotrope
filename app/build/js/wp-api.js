@@ -993,7 +993,7 @@
 
 		loadMore: function(){
 			this.page++;
-			this.collection.fetch({ reset: false, data: { page: this.page } });
+			this.collection.fetch({ remove: false, data: { page: this.page } });
 		},
 
 		onRender: function(){},
