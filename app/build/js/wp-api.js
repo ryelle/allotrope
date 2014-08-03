@@ -949,7 +949,8 @@
 	'use strict';
 
 	wp.api.views.Placeholder = Backbone.Marionette.ItemView.extend({
-		template: "placeholders"
+		template: "placeholders",
+		className: 'placeholder'
 	});
 
 	wp.api.views.Pagination = Backbone.Marionette.ItemView.extend({

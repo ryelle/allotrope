@@ -1,13 +1,5 @@
 <script id="tmpl-placeholders" type="text/html">
-	<section class="post-list placeholders">
-		<article class="post"></article>
-		<article class="post"></article>
-		<article class="post"></article>
-		<article class="post"></article>
-		<article class="post"></article>
-		<article class="post"></article>
-		<article class="post"></article>
-	</section>
+	<article class="post"></article>
 </script>
 
 <script id="tmpl-index" type="text/html"></script>
