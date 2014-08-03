@@ -948,6 +948,10 @@
 (function( wp, WP_API_Settings, Backbone, $, window, undefined ) {
 	'use strict';
 
+	wp.api.views.Placeholder = Backbone.Marionette.ItemView.extend({
+		template: "placeholders"
+	});
+
 	wp.api.views.Pagination = Backbone.Marionette.ItemView.extend({
 		template: "pagination",
 		className: 'navigation',
@@ -976,6 +980,7 @@
 		id: "main-content",
 		template: "index",
 		childView: wp.api.views.Post,
+		emptyView: wp.api.views.Placeholder,
 		page: 1,
 
 		initialize: function(){
