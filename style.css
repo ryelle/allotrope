@@ -1337,7 +1337,7 @@ a:active {
 /*--------------------------------------------------------------
 10.3 - Posts and pages
 --------------------------------------------------------------*/
-.post-list {
+.site-content {
   position: relative;
   left: -62.5px;
 }
@@ -1345,8 +1345,7 @@ a:active {
 .content-area {
   position: relative;
 }
-.content-area .post,
-.content-area .navigation {
+.content-area .post {
   position: absolute;
   display: table;
   height: 280px;
@@ -1361,10 +1360,6 @@ a:active {
 .content-area .post:nth-of-type(7n + 6) {
   height: 420px;
   width: 420px;
-}
-.content-area .navigation {
-  height: 210px;
-  width: 210px;
 }
 .content-area .placeholders .post {
   background-color: #ececec !important;
@@ -1405,6 +1400,29 @@ a:active {
   fill: transparent;
 }
 
+#pagination .navigation {
+  position: absolute;
+  display: table;
+  height: 210px;
+  width: 210px;
+  -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
+          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
+}
+#pagination .load-more {
+  margin: 0;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+#pagination a {
+  color: white;
+  font-size: 18px;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-decoration: none;
+}
+
 .single-post {
   position: absolute;
   z-index: 10;
@@ -1439,8 +1457,7 @@ a:active {
   background-color: #f6ce1c;
 }
 .content-area .entry-title,
-.content-area .entry-image,
-.content-area .load-more {
+.content-area .entry-image {
   margin: 0;
   display: table-cell;
   text-align: center;

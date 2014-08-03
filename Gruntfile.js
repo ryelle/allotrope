@@ -54,6 +54,7 @@ module.exports = function(grunt) {
 					'app/build/js/wp-api.min.js': [
 						'app/js/app.js',
 						'app/js/utils.js',
+						'app/js/ui.js',
 						'app/js/models.js',
 						'app/js/collections.js',
 						'app/js/views.js'
@@ -66,6 +67,7 @@ module.exports = function(grunt) {
 				src: [
 					'app/js/app.js',
 					'app/js/utils.js',
+					'app/js/ui.js',
 					'app/js/models.js',
 					'app/js/collections.js',
 					'app/js/views.js'

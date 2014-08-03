@@ -8,7 +8,13 @@
  */
 ?>
 
-	</div><!-- #content -->
+		</div><!-- #content -->
+		<div id="pagination"></div>
+	</div><!-- .site-content -->
+
+	<div id="single"></div>
+
+	<div id="footer"></div>
 
 </div><!-- #page -->
 

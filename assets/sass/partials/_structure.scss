@@ -2,7 +2,7 @@
 // Post list structure
 // ==========================================================================
 
-.post-list {
+.site-content {
 	position: relative;
 	left: -62.5px;
 }
@@ -14,8 +14,7 @@
 	$gutter: 15px;
 	$level: $size/2 + $gutter;
 
-	.post,
-	.navigation {
+	.post {
 		position: absolute;
 		display: table;
 		height: $size;
@@ -31,11 +30,6 @@
 	.post:nth-of-type( 7n + 6 ) {
 		height: $size * 1.5;
 		width: $size * 1.5;
-	}
-
-	.navigation {
-		height: $size * .75;
-		width: $size * .75;
 	}
 
 	.placeholders .post {
@@ -70,6 +64,33 @@
 			stroke-width: 2px;
 			fill: transparent;
 		}
+	}
+}
+
+#pagination {
+	$size: 280px;
+
+	.navigation {
+		position: absolute;
+		display: table;
+		height: $size * .75;
+		width: $size * .75;
+		clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50% );
+	}
+
+	.load-more {
+		margin: 0;
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	a {
+		color: white;
+		@include font-size( 18 );
+		text-transform: uppercase;
+		font-weight: $normal;
+		text-decoration: none;
 	}
 }
 
