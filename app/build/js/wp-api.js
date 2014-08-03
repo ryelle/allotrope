@@ -969,11 +969,7 @@
 	wp.api.views.Post = Backbone.Marionette.ItemView.extend({
 		template: "post",
 		tagName: 'article',
-		className: 'post',
-
-		onRender: function(){
-			wp.api.ui.position( this.$el, this._index );
-		}
+		className: 'post'
 	});
 
 	wp.api.views.Index = Backbone.Marionette.CompositeView.extend({
@@ -997,11 +993,14 @@
 			this.collection.fetch({ remove: false, data: { page: this.page } });
 		},
 
-		onRender: function(){},
+		/**
+		 * Reposition the children as they're added to the Composite View
+		 */
+		onAddChild: function( childView ){
+			wp.api.ui.position( childView.$el, childView._index );
+		},
 
-		onRemoveChild: function(){
-			debugger;
-		}
+		onRender: function(){}
 
 	});
 
