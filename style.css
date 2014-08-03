@@ -1356,6 +1356,9 @@ a:active {
 .content-area .entry-title {
   max-width: 280px;
   max-height: 280px;
+  padding: 20px;
+  line-height: 1;
+  text-overflow: clip;
 }
 .content-area .post:nth-of-type(7n + 6) {
   height: 420px;

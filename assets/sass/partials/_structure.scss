@@ -25,6 +25,9 @@
 	.entry-title {
 		max-width: $size;
 		max-height: $size;
+		padding: 20px;
+		line-height: 1;
+		text-overflow: clip;
 	}
 
 	.post:nth-of-type( 7n + 6 ) {
