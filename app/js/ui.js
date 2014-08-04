@@ -1,8 +1,14 @@
+/**
+ * wp.api.ui handles:
+ *  - Positioning of: diamonds, navigation, single post
+ */
 (function( Backbone, _, $, window, undefined ) {
 
-	var UI = {
+	var UI = {};
 
-		position: function( diamond, count ) {
+	UI.position = {
+
+		diamonds: function( diamond, count ) {
 			var level = count % 7, // [0-6]
 				size = 280 / 2 + 15,
 				pageOffset = Math.floor( count / 7 ) * size * 4;
@@ -56,7 +62,7 @@
 			return diamond;
 		},
 
-		positionNav: function() {
+		navigation: function() {
 			var page = Math.floor( $("#main-content .post").length / 7 ),
 				size = 280 / 2 + 15,
 				pageOffset = page * size * 4;
@@ -67,6 +73,17 @@
 				top: pageOffset + 'px',
 				left: 'calc( 50% - 42px )' // Eh
 			});
+		},
+
+		single: function( $el ){
+			var offset = $( window ).scrollTop() + 10;
+			if ( -1 !== document.body.className.indexOf('admin-bar') ) {
+				offset += 32;
+			}
+			$el.css({ position: 'absolute' });
+
+			$el.css({ top: offset + 'px' });
+			$el.slideDown();
 		}
 
 	};

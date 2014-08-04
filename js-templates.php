@@ -31,11 +31,16 @@
 
 <script id="tmpl-single" type="text/html">
 	<article>
-	<a class="genericon genericon-close-alt close"></a>
-	<# if ( data.featured_image && data.featured_image.source ) { #>
-		<img src="{{data.featured_image.source}}" />
-	<# } #>
-	<h1 class="entry-title">{{ data.title }}</h1>
-	<div class="entry-content">{{{ data.content }}}</div>
+		<a class="genericon genericon-close-alt close"></a>
+		<# if ( data.featured_image && data.featured_image.source ) { #>
+			<img src="{{data.featured_image.source}}" />
+		<# } #>
+		<h1 class="entry-title">{{ data.title }}</h1>
+		<div class="entry-content">{{{ data.content }}}</div>
+
+		<div class="post-navigation">
+			<a class="genericon genericon-previous prev"></a>
+			<a class="genericon genericon-next next"></a>
+		</div>
 	</article>
 </script>

@@ -93,11 +93,17 @@
 	wp.api.utils = wp.api.utils || new WP_API_Utils();
 
 })( Backbone, _, window );
+/**
+ * wp.api.ui handles:
+ *  - Positioning of: diamonds, navigation, single post
+ */
 (function( Backbone, _, $, window, undefined ) {
 
-	var UI = {
+	var UI = {};
 
-		position: function( diamond, count ) {
+	UI.position = {
+
+		diamonds: function( diamond, count ) {
 			var level = count % 7, // [0-6]
 				size = 280 / 2 + 15,
 				pageOffset = Math.floor( count / 7 ) * size * 4;
@@ -151,7 +157,7 @@
 			return diamond;
 		},
 
-		positionNav: function() {
+		navigation: function() {
 			var page = Math.floor( $("#main-content .post").length / 7 ),
 				size = 280 / 2 + 15,
 				pageOffset = page * size * 4;
@@ -162,6 +168,17 @@
 				top: pageOffset + 'px',
 				left: 'calc( 50% - 42px )' // Eh
 			});
+		},
+
+		single: function( $el ){
+			var offset = $( window ).scrollTop() + 10;
+			if ( -1 !== document.body.className.indexOf('admin-bar') ) {
+				offset += 32;
+			}
+			$el.css({ position: 'absolute' });
+
+			$el.css({ top: offset + 'px' });
+			$el.slideDown();
 		}
 
 	};
@@ -989,7 +1006,7 @@
 		initialize: function(){
 			this.collection.fetch({ reset: true });
 			this.listenTo( this.collection, "reset", this.render );
-			this.listenTo( this.collection, "sync", wp.api.ui.positionNav );
+			this.listenTo( this.collection, "sync", wp.api.ui.position.navigation );
 
 			_.bindAll( this, 'loadMore' );
 			wp.api.app.vent.on( "posts:more", this.loadMore );
@@ -1005,7 +1022,7 @@
 		 * Reposition the children as they're added to the Composite View
 		 */
 		onAddChild: function( childView ){
-			wp.api.ui.position( childView.$el, childView._index );
+			wp.api.ui.position.diamonds( childView.$el, childView._index );
 		}
 
 	});
@@ -1018,7 +1035,7 @@
 		events: {
 			'click .close': 'close',
 			'click .next' : 'next',
-			'click .prev' : 'prev'
+			'click .prev' : 'previous'
 		},
 
 		close: function( e ) {
@@ -1027,19 +1044,53 @@
 			wp.api.app.navigate( '/' );
 		},
 
+		next: function( e ) {
+			e.preventDefault();
+			$.when(
+				$.get( this.model.url() + '/next' )
+			).then( function( ID ) {
+				if ( '' != ID ) {
+					wp.api.app.navigate( 'post/' + ID, { trigger: true });
+				}
+			});
+		},
+
+		previous: function( e ) {
+			e.preventDefault();
+			$.when(
+				$.get( this.model.url() + '/previous' )
+			).then( function( ID ) {
+				if ( '' != ID ) {
+					wp.api.app.navigate( 'post/' + ID, { trigger: true });
+				}
+			});
+		},
+
+		onKeydown: function( e ) {
+			if ( 39 === e.keyCode ){ // Next
+				this.next( e );
+			} else if ( 37 === e.keyCode ) { // Previous
+				this.previous( e );
+			} else if ( 27 === e.keyCode ) { // Close (esc)
+				this.close( e );
+			}
+		},
+
 		initialize: function(){
 			this.model.fetch({ reset: true });
 			this.listenTo( this.model, "change", this.render );
+
+			_.bindAll(this, 'onKeydown');
+			$(document).bind( 'keydown', this.onKeydown);
+		},
+
+		destroy: function(){
+			Backbone.Marionette.ItemView.prototype.destroy.apply(this, arguments);
+			$(document).unbind( 'keydown', this.onKeydown);
 		},
 
 		onRender: function( view ){
-			var offset = 0;
-
-			offset = $( window ).scrollTop() + 10;
-			this.$el.css({ position: 'absolute' });
-
-			this.$el.css({ top: offset + 'px' });
-			this.$el.slideDown();
+			wp.api.ui.position.single( this.$el );
 		}
 	});
 

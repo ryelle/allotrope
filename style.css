@@ -1494,11 +1494,11 @@ a:active {
   font-size: 1rem;
   background: #2cc3fb;
 }
-.single-post .genericon-close-alt {
+.single-post .genericon {
   font-size: 32px;
   color: white;
 }
-.single-post .genericon-close-alt:hover, .single-post .genericon-close-alt:active, .single-post .genericon-close-alt:focus {
+.single-post .genericon:hover, .single-post .genericon:active, .single-post .genericon:focus {
   color: white;
 }
 .single-post a {
