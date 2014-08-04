@@ -56,23 +56,17 @@
 			return diamond;
 		},
 
-		positionNav: function( nav ) {
-			var page = nav.data( 'page' );
-			if ( ! page ){
-				page = Math.floor( $("#main-content .post").length / 7 );
-			}
+		positionNav: function() {
+			var page = Math.floor( $("#main-content .post").length / 7 ),
+				size = 280 / 2 + 15,
+				pageOffset = page * size * 4;
 
-			var size = 280 / 2 + 15,
-				pageOffset = (page - 1) * size * 4;
+			$( '.navigation a' ).removeClass('loading');
 
-			nav.css({
+			$( '.navigation' ).css({
 				top: pageOffset + 'px',
-				left: 'calc( 50% - 105px )' // Eh
+				left: 'calc( 50% - 42px )' // Eh
 			});
-
-			nav.data( 'page', page + 1 );
-
-			return nav;
 		}
 
 	};

@@ -88,6 +88,11 @@
 		vertical-align: middle;
 	}
 
+	.loading {
+		opacity: 0;
+		cursor: default;
+	}
+
 	a {
 		color: white;
 		@include font-size( 18 );

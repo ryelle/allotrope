@@ -151,23 +151,17 @@
 			return diamond;
 		},
 
-		positionNav: function( nav ) {
-			var page = nav.data( 'page' );
-			if ( ! page ){
-				page = Math.floor( $("#main-content .post").length / 7 );
-			}
+		positionNav: function() {
+			var page = Math.floor( $("#main-content .post").length / 7 ),
+				size = 280 / 2 + 15,
+				pageOffset = page * size * 4;
 
-			var size = 280 / 2 + 15,
-				pageOffset = (page - 1) * size * 4;
+			$( '.navigation a' ).removeClass('loading');
 
-			nav.css({
+			$( '.navigation' ).css({
 				top: pageOffset + 'px',
-				left: 'calc( 50% - 105px )' // Eh
+				left: 'calc( 50% - 42px )' // Eh
 			});
-
-			nav.data( 'page', page + 1 );
-
-			return nav;
 		}
 
 	};
@@ -958,11 +952,14 @@
 		className: 'navigation',
 
 		events: {
-			'click': 'loadMore'
+			'click .load-more': 'loadMore'
 		},
 
-		loadMore: function(){
-			wp.api.app.vent.trigger( "posts:more" );
+		loadMore: function( e ){
+			e.preventDefault();
+			if ( -1 === e.target.className.indexOf('loading') ) {
+				wp.api.app.vent.trigger( "posts:more" );
+			}
 		}
 	});
 
@@ -983,6 +980,7 @@
 		initialize: function(){
 			this.collection.fetch({ reset: true });
 			this.listenTo( this.collection, "reset", this.render );
+			this.listenTo( this.collection, "sync", wp.api.ui.positionNav );
 
 			_.bindAll( this, 'loadMore' );
 			wp.api.app.vent.on( "posts:more", this.loadMore );
@@ -990,6 +988,7 @@
 
 		loadMore: function(){
 			this.page++;
+			$( '.navigation a' ).addClass('loading');
 			this.collection.fetch({ remove: false, data: { page: this.page } });
 		},
 
@@ -998,9 +997,7 @@
 		 */
 		onAddChild: function( childView ){
 			wp.api.ui.position( childView.$el, childView._index );
-		},
-
-		onRender: function(){}
+		}
 
 	});
 

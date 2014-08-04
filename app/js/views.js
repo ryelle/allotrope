@@ -14,11 +14,14 @@
 		className: 'navigation',
 
 		events: {
-			'click': 'loadMore'
+			'click .load-more': 'loadMore'
 		},
 
-		loadMore: function(){
-			wp.api.app.vent.trigger( "posts:more" );
+		loadMore: function( e ){
+			e.preventDefault();
+			if ( -1 === e.target.className.indexOf('loading') ) {
+				wp.api.app.vent.trigger( "posts:more" );
+			}
 		}
 	});
 
@@ -39,6 +42,7 @@
 		initialize: function(){
 			this.collection.fetch({ reset: true });
 			this.listenTo( this.collection, "reset", this.render );
+			this.listenTo( this.collection, "sync", wp.api.ui.positionNav );
 
 			_.bindAll( this, 'loadMore' );
 			wp.api.app.vent.on( "posts:more", this.loadMore );
@@ -46,6 +50,7 @@
 
 		loadMore: function(){
 			this.page++;
+			$( '.navigation a' ).addClass('loading');
 			this.collection.fetch({ remove: false, data: { page: this.page } });
 		},
 
@@ -54,9 +59,7 @@
 		 */
 		onAddChild: function( childView ){
 			wp.api.ui.position( childView.$el, childView._index );
-		},
-
-		onRender: function(){}
+		}
 
 	});
 

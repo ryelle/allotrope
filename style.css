@@ -1417,6 +1417,10 @@ a:active {
   text-align: center;
   vertical-align: middle;
 }
+#pagination .loading {
+  opacity: 0;
+  cursor: default;
+}
 #pagination a {
   color: white;
   font-size: 18px;
