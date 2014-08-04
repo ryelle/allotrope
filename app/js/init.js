@@ -94,6 +94,10 @@
 		Backbone.history.start();
 	});
 
+	wp.api.app.navigate = function( fragment, options ){
+		Backbone.history.navigate( fragment, options );
+	}
+
 	wp.api.app.start();
 
 

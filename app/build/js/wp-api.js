@@ -974,7 +974,7 @@
 
 		open: function( e ){
 			e.preventDefault();
-			Backbone.history.navigate(e.target.getAttribute('href'), { trigger: true });
+			wp.api.app.navigate(e.target.getAttribute('href'), { trigger: true });
 		}
 	});
 
@@ -1014,6 +1014,18 @@
 		template: "single",
 		tagName: 'div',
 		className: 'single-post',
+
+		events: {
+			'click .close': 'close',
+			'click .next' : 'next',
+			'click .prev' : 'prev'
+		},
+
+		close: function( e ) {
+			e.preventDefault();
+			this.destroy();
+			wp.api.app.navigate( '/' );
+		},
 
 		initialize: function(){
 			this.model.fetch({ reset: true });
