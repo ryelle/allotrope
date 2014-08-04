@@ -28,7 +28,16 @@
 	wp.api.views.Post = Backbone.Marionette.ItemView.extend({
 		template: "post",
 		tagName: 'article',
-		className: 'post'
+		className: 'post',
+
+		events: {
+			'click a': 'open'
+		},
+
+		open: function( e ){
+			e.preventDefault();
+			Backbone.history.navigate(e.target.getAttribute('href'), { trigger: true });
+		}
 	});
 
 	wp.api.views.Index = Backbone.Marionette.CompositeView.extend({
