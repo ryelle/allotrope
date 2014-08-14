@@ -11,50 +11,56 @@
 		diamonds: function( diamond, count ) {
 			var level = count % 7, // [0-6]
 				size = 280 / 2 + 15,
-				pageOffset = Math.floor( count / 7 ) * size * 4;
+				pageOffset = Math.floor( count / 7 ) * size * 4,
+				left = 0;
 
 			switch (level) {
 				case 0:
 					diamond.css({
-						top: pageOffset + 'px',
+						top: pageOffset - UI.animate.offset + 'px',
 						left: 'calc( 50% - ' + size * 0.5 + 'px )'
 					});
 					break;
 				case 1:
+					left = size * 1.5 + UI.animate.offset;
 					diamond.css({
 						top: size + pageOffset + 'px',
-						left: 'calc( 50% - ' + size * 1.5 + 'px )'
+						left: 'calc( 50% - ' + left + 'px )'
 					});
 					break;
 				case 2:
+					left = size * 0.5 + UI.animate.offset;
 					diamond.css({
 						top: size + pageOffset + 'px',
-						left: 'calc( 50% + ' + size * 0.5 + 'px )'
+						left: 'calc( 50% + ' + left + 'px )'
 					});
 					break;
 				case 3:
+					left = size * 2.5 + UI.animate.offset;
 					diamond.css({
 						top: 2*size + pageOffset + 'px',
-						left: 'calc( 50% - ' + size * 2.5 + 'px )'
+						left: 'calc( 50% - ' + left + 'px )'
 					});
 					break;
 				case 4:
 					diamond.css({
-						top: 2*size + pageOffset + 'px',
+						top: 2*size + pageOffset - UI.animate.offset + 'px',
 						left: 'calc( 50% - ' + size * 0.5 + 'px )'
 					});
 					break;
 				case 5:
 					// Not right!
+					left = 162.5 + UI.animate.offset;
 					diamond.css({
 						top: 2*size + pageOffset + 'px',
-						left: 'calc( 50% + 162.5px )' // 140 + gutter * 1.5
+						left: 'calc( 50% + ' + left + 'px )' // 140 + gutter * 1.5
 					});
 					break;
 				case 6:
+					left = size * 1.5 + UI.animate.offset;
 					diamond.css({
 						top: 3*size + pageOffset + 'px',
-						left: 'calc( 50% - ' + size * 1.5 + 'px )'
+						left: 'calc( 50% - ' + left + 'px )'
 					});
 					break;
 			}
@@ -87,6 +93,32 @@
 		}
 
 	};
+
+	UI.animate = {
+		offset: 50,
+		duration: 600,
+
+		diamonds: function( diamond, count ){
+			var level = count % 7; // [0-6]
+
+			switch (level) {
+				case 0:
+				case 4:
+					diamond.animate({ marginTop: UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
+					break;
+				case 1:
+				case 3:
+				case 6:
+					diamond.animate({ marginLeft: UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
+					break;
+				case 2:
+				case 5:
+					diamond.animate({ marginLeft: '-' + UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
+					break;
+			}
+		}
+
+	}
 
 	window.wp = window.wp || {};
 	wp.api = wp.api || {};

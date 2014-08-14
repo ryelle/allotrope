@@ -76,7 +76,7 @@ function allotrope_scripts() {
 
 	wp_enqueue_style( 'allotrope-style', get_stylesheet_uri() );
 
-	wp_register_script( 'marionette', get_template_directory_uri() . '/app/vendor/backbone.marionette.js', array( 'jquery', 'underscore', 'backbone' ), ALLOTROPE_VERSION, true );
+	wp_register_script( 'marionette', get_template_directory_uri() . '/app/vendor/backbone.marionette.js', array( 'jquery', 'underscore', 'backbone', 'jquery-effects-core' ), ALLOTROPE_VERSION, true );
 
 	wp_enqueue_script( 'wp-api-js', get_template_directory_uri() . '/app/build/js/wp-api.js', array( 'jquery', 'underscore', 'backbone', 'marionette', 'wp-util' ), ALLOTROPE_VERSION, true );
 	wp_enqueue_script( 'app-init', get_template_directory_uri() . '/app/js/init.js', array( 'wp-api-js' ), ALLOTROPE_VERSION, true );
