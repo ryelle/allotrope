@@ -1041,7 +1041,11 @@
 		close: function( e ) {
 			e.preventDefault();
 			this.destroy();
-			wp.api.app.navigate( '/' );
+			if ( $("#main-content").length ) {
+				wp.api.app.navigate( '/' );
+			} else {
+				wp.api.app.navigate( '/', { trigger: true });
+			}
 		},
 
 		next: function( e ) {
