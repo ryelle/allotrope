@@ -190,7 +190,7 @@
 	};
 
 	UI.animate = {
-		offset: 50,
+		offset: 25,
 		duration: 600,
 
 		diamonds: function( diamond, count ){
@@ -1053,15 +1053,10 @@
 		/**
 		 * Reposition the children as they're added to the Composite View
 		 */
-		// onAddChild: function( childView ){
-		// 	wp.api.ui.position.diamonds( childView.$el, childView._index );
-		// },
-
-		// The default implementation:
 		attachHtml: function(collectionView, childView, index){
-			wp.api.ui.position.diamonds( childView.$el, childView._index );
+			wp.api.ui.position.diamonds( childView.$el, index );
 			collectionView.$el.append( childView.el );
-			wp.api.ui.animate.diamonds( childView.$el, childView._index );
+			wp.api.ui.animate.diamonds( childView.$el, index );
 		}
 
 	});

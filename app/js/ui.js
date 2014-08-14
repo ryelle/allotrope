@@ -95,7 +95,7 @@
 	};
 
 	UI.animate = {
-		offset: 50,
+		offset: 25,
 		duration: 600,
 
 		diamonds: function( diamond, count ){
