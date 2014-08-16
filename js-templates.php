@@ -38,6 +38,26 @@
 		<h1 class="entry-title">{{ data.title }}</h1>
 		<div class="entry-content">{{{ data.content }}}</div>
 
+		<# if ( data.terms ) { #>
+			<# if ( data.terms.category ) { #>
+				<div class="entry-terms categories">
+				<span class="posted-in"><?php _e( 'Categories:', 'allotrope' ); ?></span>
+				<# _.each( data.terms.category, function(value, key, list){ #>
+					<a href="/category/{{ value.ID }}">{{ value.name }}</a>
+				<# }); #>
+				</div>
+			<# } #>
+
+			<# if ( data.terms.post_tag ) { #>
+				<div class="entry-terms tags">
+				<span class="posted-in"><?php _e( 'Tags:', 'allotrope' ); ?></span>
+				<# _.each( data.terms.post_tag, function(value, key, list){ #>
+					<a href="/tag/{{ value.slug }}">{{ value.name }}</a>
+				<# }); #>
+				</div>
+			<# } #>
+		<# } #>
+
 		<div class="post-navigation">
 			<a class="genericon genericon-previous prev"></a>
 			<a class="genericon genericon-next next"></a>

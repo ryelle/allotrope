@@ -18,6 +18,9 @@
 	wp.api.app.Router = Marionette.AppRouter.extend({
 		appRoutes: {
 			'':                   'default',
+			'category/:id':       'category',
+			'category/:id/*slug': 'category',
+			'tag/:slug':          'tag',
 			'post/:id':           'single',
 			'post/:id/*slug':     'single'
 		}
@@ -50,9 +53,10 @@
 			wp.api.app.main.$el.append( wp.template( 'background' )({ size:950, class: 'very-large' }) );
 		},
 
-		showPosts: function (posts) {
+		showPosts: function ( posts, data ) {
 			wp.api.app.main.show(new wp.api.views.Index({
-				collection: posts
+				collection: posts,
+				query: data
 			}));
 		},
 
@@ -62,9 +66,22 @@
 			}));
 		},
 
-		// Set the filter to show complete or all items
 		default: function () {
-			this.showPosts( this.posts );
+			this.showPosts( this.posts, {} );
+			this.showPagination();
+			this.showDecoration();
+		},
+
+		// Category expects an integer ID
+		category: function ( category ) {
+			this.showPosts( this.posts, { 'filter[cat]': category } );
+			this.showPagination();
+			this.showDecoration();
+		},
+
+		// Tag expects a string slug
+		tag: function ( tag ) {
+			this.showPosts( this.posts, { 'filter[tag]': tag } );
 			this.showPagination();
 			this.showDecoration();
 		},

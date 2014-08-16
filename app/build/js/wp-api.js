@@ -1001,7 +1001,7 @@
 		className: 'navigation',
 
 		events: {
-			'click .load-more': 'loadMore'
+			'click .load-more':   'loadMore'
 		},
 
 		loadMore: function( e ){
@@ -1034,9 +1034,11 @@
 		childView: wp.api.views.Post,
 		emptyView: wp.api.views.Placeholder,
 		page: 1,
+		query: {},
 
-		initialize: function(){
-			this.collection.fetch({ reset: true });
+		initialize: function( options ){
+			this.query = options.query;
+			this.collection.fetch({ reset: true, data: this.query });
 			this.listenTo( this.collection, "reset", this.render );
 			this.listenTo( this.collection, "sync", wp.api.ui.position.navigation );
 
@@ -1047,7 +1049,8 @@
 		loadMore: function(){
 			this.page++;
 			$( '.navigation a' ).addClass('loading');
-			this.collection.fetch({ remove: false, data: { page: this.page } });
+			this.query.page = this.page;
+			this.collection.fetch({ remove: false, data: this.query });
 		},
 
 		/**
@@ -1057,6 +1060,10 @@
 			wp.api.ui.position.diamonds( childView.$el, index );
 			collectionView.$el.append( childView.el );
 			wp.api.ui.animate.diamonds( childView.$el, index );
+		},
+
+		onRender: function(){
+			wp.api.app.single.empty();
 		}
 
 	});
@@ -1069,7 +1076,8 @@
 		events: {
 			'click .close': 'close',
 			'click .next' : 'next',
-			'click .prev' : 'previous'
+			'click .prev' : 'previous',
+			'click a[href^="/"]': 'openArchive'
 		},
 
 		close: function( e ) {
@@ -1112,6 +1120,11 @@
 			} else if ( 27 === e.keyCode ) { // Close (esc)
 				this.close( e );
 			}
+		},
+
+		openArchive: function( e ){
+			e.preventDefault();
+			wp.api.app.navigate(e.target.getAttribute('href'), { trigger: true });
 		},
 
 		initialize: function(){
