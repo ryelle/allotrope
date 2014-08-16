@@ -21,6 +21,7 @@
 			'category/:id':       'category',
 			'category/:id/*slug': 'category',
 			'tag/:slug':          'tag',
+			'search/:query':      'search',
 			'post/:id':           'single',
 			'post/:id/*slug':     'single'
 		}
@@ -82,6 +83,13 @@
 		// Tag expects a string slug
 		tag: function ( tag ) {
 			this.showPosts( this.posts, { 'filter[tag]': tag } );
+			this.showPagination();
+			this.showDecoration();
+		},
+
+		// Search expects a string query
+		search: function ( query ) {
+			this.showPosts( this.posts, { 'filter[s]': query } );
 			this.showPagination();
 			this.showDecoration();
 		},
