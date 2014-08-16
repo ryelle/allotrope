@@ -95,27 +95,11 @@
 	};
 
 	UI.animate = {
-		offset: 25,
-		duration: 600,
+		offset: 0,
+		duration: 750,
 
 		diamonds: function( diamond, count ){
-			var level = count % 7; // [0-6]
-
-			switch (level) {
-				case 0:
-				case 4:
-					diamond.animate({ marginTop: UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
-					break;
-				case 1:
-				case 3:
-				case 6:
-					diamond.animate({ marginLeft: UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
-					break;
-				case 2:
-				case 5:
-					diamond.animate({ marginLeft: '-' + UI.animate.offset + 'px' }, UI.animate.duration, 'easeOutBack');
-					break;
-			}
+			diamond.animate({ opacity: 1 }, UI.animate.duration );
 		}
 
 	}

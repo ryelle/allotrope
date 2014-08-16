@@ -1442,6 +1442,9 @@ a:active {
 .content-area .post:nth-of-type(4n + 4) {
   background-color: #f6ce1c;
 }
+.content-area .post {
+  opacity: 0;
+}
 .content-area .entry-title,
 .content-area .entry-image {
   margin: 0;
