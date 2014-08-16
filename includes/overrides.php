@@ -6,6 +6,8 @@
 function allotrope_hide_password( $query ){
 	if ( ! is_admin() ) {
 		$query->set( 'has_password', false );
+		// @todo remove this and handle the long title
+		$query->set( 'post__not_in', array( 1175 ) );
 	}
 }
 add_action( 'pre_get_posts', 'allotrope_hide_password' );
