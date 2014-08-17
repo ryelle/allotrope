@@ -50,16 +50,39 @@ class WP_JSON_Posts_Adjacent extends WP_JSON_Posts {
 		return array_merge( $routes, $post_routes );
 	}
 
+	/**
+	 * Get the ID of the post before a given post
+	 *
+	 * @see WP_JSON_Posts_Adjacent::get_adjacent_post
+	 * @param  int  $id  ID of starting post
+	 * @return
+	 */
 	public function get_previous_post( $id ){
 		$adj_id = $this->get_adjacent_post( $id );
 		return $adj_id;
 	}
 
+	/**
+	 * Get the ID of the post after a given post
+	 *
+	 * @see WP_JSON_Posts_Adjacent::get_adjacent_post
+	 * @param  int  $id  ID of starting post
+	 * @return
+	 */
 	public function get_next_post( $id ){
 		$adj_id = $this->get_adjacent_post( $id, false );
 		return $adj_id;
 	}
 
+	/**
+	 * Get the ID of the post after a given post
+	 *
+	 * @see get_adjacent_post (in core)
+	 * @param  int   $id        ID of starting post
+	 * @param  bool  $previous  Optional. Whether to retrieve previous post.
+	 * @return mixed  Post ID if successful. Null if the starting post doesn't exist.
+	 *                Empty string if no corresponding post exists.
+	 */
 	public function get_adjacent_post( $id, $previous = true ) {
 		global $wpdb;
 
@@ -72,44 +95,23 @@ class WP_JSON_Posts_Adjacent extends WP_JSON_Posts {
 		$op = $previous ? '<' : '>';
 		$order = $previous ? 'DESC' : 'ASC';
 
-		/**
-		 * Filter the WHERE clause in the SQL for an adjacent post query.
-		 *
-		 * The dynamic portion of the hook name, $adjacent, refers to the type
-		 * of adjacency, 'next' or 'previous'.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param string $where          The WHERE clause in the SQL.
-		 * @param bool   $in_same_term   Whether post should be in a same taxonomy term.
-		 * @param array  $excluded_terms Array of excluded term IDs.
-		 */
+		/** This action is documented in wp-includes/link-template.php */
 		$where = apply_filters( "get_{$adjacent}_post_where", $wpdb->prepare( "WHERE p.post_date $op %s AND p.post_type = %s AND p.post_status = 'publish'", $current_post_date, $post->post_type) );
 
-		/**
-		 * Filter the ORDER BY clause in the SQL for an adjacent post query.
-		 *
-		 * The dynamic portion of the hook name, $adjacent, refers to the type
-		 * of adjacency, 'next' or 'previous'.
-		 *
-		 * @since 2.5.0
-		 *
-		 * @param string $order_by The ORDER BY clause in the SQL.
-		 */
+		/** This action is documented in wp-includes/link-template.php */
 		$sort  = apply_filters( "get_{$adjacent}_post_sort", "ORDER BY p.post_date $order LIMIT 1" );
 
 		$query = "SELECT p.ID FROM $wpdb->posts AS p $where $sort";
 		$query_key = 'adjacent_post_' . md5( $query );
 		$result = wp_cache_get( $query_key, 'counts' );
 		if ( false !== $result ) {
-			if ( $result )
-				$result = get_post( $result );
 			return $result;
 		}
 
 		$result = $wpdb->get_var( $query );
-		if ( null === $result )
+		if ( null === $result ) {
 			$result = '';
+		}
 
 		wp_cache_set( $query_key, $result, 'counts' );
 
@@ -117,6 +119,9 @@ class WP_JSON_Posts_Adjacent extends WP_JSON_Posts {
 	}
 }
 
+/**
+ * Add the Adjacent Posts endpoints to the JSON API
+ */
 function allotrope_setup_wpapi( $server ){
 	$wp_json_posts_adjacent = new WP_JSON_Posts_Adjacent( $server );
 	add_filter( 'json_endpoints', array( $wp_json_posts_adjacent, 'register_routes' ), 0 );
