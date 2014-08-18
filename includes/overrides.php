@@ -40,11 +40,11 @@ class WP_JSON_Posts_Adjacent extends WP_JSON_Posts {
 	public function register_routes( $routes ) {
 		$post_routes = array(
 			'/posts/(?P<id>\d+)/previous' => array(
-				array( $this, 'get_previous_post' ),         WP_JSON_Server::READABLE
+				array( $this, 'get_previous_post' ), WP_JSON_Server::READABLE
 			),
 
 			'/posts/(?P<id>\d+)/next' => array(
-				array( $this, 'get_next_post' ),         WP_JSON_Server::READABLE
+				array( $this, 'get_next_post' ), WP_JSON_Server::READABLE
 			),
 		);
 		return array_merge( $routes, $post_routes );
